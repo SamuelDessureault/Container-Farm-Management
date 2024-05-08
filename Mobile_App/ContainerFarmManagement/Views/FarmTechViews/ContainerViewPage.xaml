@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             xmlns:convert="clr-namespace:ContainerFarmManagement.Converters"
+             x:Class="ContainerFarmManagement.Views.FarmTechViews.ContainerViewPage"
+             Title="Container ID">
+    <ContentPage.Resources>
+        <convert:FloatStateToString x:Key="FloatToString"/>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="toolEdit" Clicked="toolEdit_Clicked" IconImageSource="options.png"/>
+    </ContentPage.ToolbarItems>
+    <VerticalStackLayout>
+        <Frame>
+            <Grid x:Name="plantDataGrid" HeightRequest="100">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Temperature:" Grid.Row="0" Grid.Column="0"/>
+                <Label x:Name="tempLabel" Text="{Binding Temperature}" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center"/>
+                <Label Text="Humidity:" Grid.Row="0" Grid.Column="2"/>
+                <Label x:Name="humiLabel" Text="{Binding Humidity}" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center"/>
+                <Label Text="Water Level:" Grid.Row="1" Grid.Column="0"/>
+                <Label x:Name="waterLabel" Text="{Binding WaterLevel}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
+                <Label Text="Soil Moisture:" Grid.Row="1" Grid.Column="2"/>
+                <Label x:Name="soilLabel" Text="{Binding SoilMoisture}" Grid.Row="1" Grid.Column="3" HorizontalOptions="Center"/>
+                <Label Text="Fan State: " Grid.Row="2" Grid.Column="0"/>
+                <Label x:Name="fanStateLabel" BindingContext="{x:Reference fanToggle}" Text="{Binding IsToggled}" Grid.Row="2" Grid.Column="2"/>
+                <Label Text="Light State: " Grid.Row="3" Grid.Column="0"/>
+                <Label x:Name="lightStateLabel" BindingContext="{x:Reference lightToggle}" Text="{Binding IsToggled}" Grid.Row="3" Grid.Column="2"/>
+            </Grid>
+        </Frame>
+        <Frame>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Turn ON Fan Manually" Grid.Row="0" Grid.Column="0"/>
+                <Switch x:Name="fanToggle" Grid.Row="0" Grid.Column="1" Toggled="fanToggle_Toggled"/>
+                <Label Text="Turn ON Light Manually" Grid.Row="1" Grid.Column="0"/>
+                <Switch x:Name="lightToggle" Grid.Row="1" Grid.Column="1" Toggled="lightToggle_Toggled"/>
+                <Label Text="Lock Door Manually" Grid.Row="2" Grid.Column="0"/>
+                <Switch x:Name="lockToggle" Grid.Row="2" Grid.Column="1" Toggled="lockToggle_Toggled"/>
+
+            </Grid>
+        </Frame>
+        <Button x:Name="historyDataBtn" Text="View Historical Data" Clicked="historyDataBtn_Clicked"/>
+    </VerticalStackLayout>
+</ContentPage>

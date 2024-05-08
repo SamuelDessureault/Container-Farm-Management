@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContainerFarmManagement.Views.FarmOwnerViews.GeoLocationView"
+             xmlns:maps="clr-namespace:Maui.GoogleMaps;assembly=Maui.GoogleMaps"
+             Title="GeoLocationView">
+    <ScrollView>
+        <StackLayout Spacing="5">
+            <Frame CornerRadius="10" Padding="10">
+                <StackLayout>
+                    <Label BindingContext="{x:Reference Alarm}" Text="{Binding IsToggled, StringFormat='Alarm: {0}'}" x:Name="containerAlarm"/>
+                    <Label x:Name="doorLockLabel" BindingContext="{x:Reference doorLockToggle}" Text="{Binding IsToggled, StringFormat='Door Lock: {0}'}" Grid.Row="2" Grid.Column="1"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame>
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="{Binding FormattedPosition}" x:Name="containerPosition"/>
+                    <StackLayout Grid.Row="1">
+                        <Label Text="{Binding Pitch, StringFormat='Pitch: {0}'}" />
+                        <Label Text="{Binding Roll, StringFormat='Roll: {0}'}" />
+                        <Label Text="{Binding Vibration, StringFormat='Vibration: {0}'}" />
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <Frame CornerRadius="10" Padding="10">
+                <maps:Map x:Name="containerMap"
+                          HeightRequest="450"
+                          MyLocationEnabled="True"
+                          InitialCameraUpdate="45.452493, -74.150707, 5, 30, 60"
+                          MapType="Street"
+                          />
+            </Frame>
+
+
+            <Frame CornerRadius="10" Padding="10">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="StartAndExpand">
+                        <Label Text="Controls" VerticalOptions="Center" />
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Alarm" VerticalOptions="Center" />
+                            <Switch x:Name="Alarm" Toggled="Alarm_Toggled" />
+                            <Label Text="Door Lock" VerticalOptions="Center" Margin="10,0,0,0"/>
+                            <Switch x:Name="doorLockToggle" Toggled="doorLockToggle_Toggled"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <Button Text="View Historical Data" Clicked="Button_Clicked" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             x:Class="ContainerFarmManagement.Views.FarmTechViews.ContainerHistoryPage"
+             Title="">
+    <VerticalStackLayout>
+        <charts:CartesianChart x:Name="farmChart" TooltipTextSize="30" HeightRequest="200" ZoomMode="X"
+                               Series="{Binding Series}" XAxes="{Binding XAxis}" YAxes="{Binding YAxis}"/>
+        <Picker x:Name="chartPicker" HorizontalOptions="Center" SelectedIndexChanged="chartPicker_SelectedIndexChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Temperature</x:String>
+                    <x:String>Humidity</x:String>
+                    <x:String>Water Level</x:String>
+                    <x:String>Soil Moisture</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+    </VerticalStackLayout>
+</ContentPage>

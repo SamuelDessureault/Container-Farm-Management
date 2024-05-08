@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ContainerFarmManagement.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ContainerFarmManagement"
+    xmlns:views="clr-namespace:ContainerFarmManagement.Views"
+    xmlns:viewsTech="clr-namespace:ContainerFarmManagement.Views.FarmTechViews"
+
+    xmlns:ownerviews="clr-namespace:ContainerFarmManagement.Views.FarmOwnerViews"
+    Shell.FlyoutBehavior="Disabled">
+
+    <ShellContent Title="Login" ContentTemplate="{DataTemplate local:MainPage}" Route="Login"/>
+
+    <!--<TabBar Route="OwnerContainerView" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Container Map" ContentTemplate="{DataTemplate ownerviews:GeoLocationView}"/>
+        <ShellContent Title="Historical Data" ContentTemplate="{DataTemplate ownerviews:OwnerHistoricalData}"/>
+    </TabBar>-->
+    <TabBar Route="TechContainerView" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Current Data" ContentTemplate="{DataTemplate viewsTech:ContainerViewPage}" Route="CurrentData"/>
+        <ShellContent Title="Historical Data" ContentTemplate="{DataTemplate viewsTech:ContainerHistoryPage}" Route="HistoricalData"/>
+    </TabBar>
+
+    <ShellContent Title="ContainerList" ContentTemplate="{DataTemplate views:ContainerListPage}" Route="ContainerList"/>
+</Shell>

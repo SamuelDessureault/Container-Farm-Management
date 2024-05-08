@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContainerFarmManagement.Views.FarmOwnerViews.OwnerHistoricalData"
+             xmlns:charts="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             Title="OwnerHistoricalData">
+    <VerticalStackLayout>
+        <Frame>
+            <Grid x:Name="securityDataGrid" HeightRequest="100">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Noise:" Grid.Row="0" Grid.Column="0"/>
+                <Label x:Name="noiseLabel" Text="{Binding Container.SecuritySubsystem.Noise}" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center"/>
+                <Label Text="Luminosity:" Grid.Row="0" Grid.Column="2"/>
+                <Label x:Name="luminosityLabel" Text="{Binding Container.SecuritySubsystem.Luminosity}" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center"/>
+                <Label Text="Motion:" Grid.Row="1" Grid.Column="0"/>
+                <Label x:Name="motionLabel" Text="{Binding Container.SecuritySubsystem.Motion}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
+                <Label Text="Door:" Grid.Row="1" Grid.Column="2"/>
+                <Label x:Name="doorLabel" Text="{Binding Container.SecuritySubsystem.Door}" Grid.Row="1" Grid.Column="3" HorizontalOptions="Center"/>
+
+            </Grid>
+        </Frame>
+        <charts:CartesianChart x:Name="farmChart" TooltipTextSize="30" HeightRequest="200" ZoomMode="X"
+                               Series="{Binding Series}" XAxes="{Binding XAxis}" YAxes="{Binding YAxis}"/>
+        <Picker x:Name="chartPicker" HorizontalOptions="Center" SelectedIndexChanged="chartPicker_SelectedIndexChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Noise</x:String>
+                    <x:String>Luminosity</x:String>
+                    <x:String>Motion</x:String>
+                    <x:String>Door</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <Frame>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+            </Grid>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>

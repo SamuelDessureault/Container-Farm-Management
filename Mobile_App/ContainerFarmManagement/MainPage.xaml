@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContainerFarmManagement.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Border x:Name="login" IsVisible="true">
+                <VerticalStackLayout BackgroundColor="#dfd8f7" Padding="10">
+                    <Label Text="SIGN IN"/>
+                    <Entry x:Name="signInEmailEntry" Placeholder="Email"/>
+                    <Entry x:Name="signInPasswordEntry" Placeholder="Password" IsPassword="True"/>
+                    <Button x:Name="btn_signIn" Text="Sign In" Clicked="btn_signIn_Clicked"/>
+                    <Button Text="No Account? Sign Up" x:Name="btn_wantSignUp" Clicked="btn_wantSignUp_Clicked"
+                            BackgroundColor="#dfd8f7" TextColor="#2b0b98"/>
+                </VerticalStackLayout>
+            </Border>
+            <Border x:Name="logout"  IsVisible="false">
+                <VerticalStackLayout BackgroundColor="#dfd8f7" Padding="10">
+                    <Label Text="SIGN OUT"/>
+                    <Label Text="{Binding Uid, StringFormat='Uid : {0}'}"/>
+                    <Button x:Name="btn_signOut" Text="Sign Out" Clicked="btn_signOut_Clicked"/>
+                    <Button x:Name="btn_back" Text="Back" Clicked="btn_back_Clicked" Margin="0,5,0,0"/>
+                </VerticalStackLayout>
+            </Border>
+            <Border x:Name="signup" BackgroundColor="#dfd8f7" IsVisible="false">
+                <VerticalStackLayout Padding="10">
+                    <Label Text="SIGN UP"/>
+                    <Entry x:Name="signUpUsernameEntry" Placeholder="Name"/>
+                    <Entry x:Name="signUpEmailEntry" Placeholder="Email"/>
+                    <Entry x:Name="signUpPasswordEntry" Placeholder="Password" IsPassword="True"/>
+                    <Entry x:Name="signUpConfirmPasswordEntry" Placeholder="Confirm Password" IsPassword="True"/>
+                    <Picker x:Name="signUpAccountTypePicker"/>
+                    <HorizontalStackLayout>
+                        <Button x:Name="btn_cancel" Text="Back" Clicked="btn_cancel_Clicked"/>
+                        <Button x:Name="btn_submit" Text="Submit" Clicked="btn_submit_Clicked"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+            <Label Text="Wrong Username or Password" TextColor="Red" IsVisible="false" x:Name="lbl_err"/>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ContainerFarmManagement.Models"
+             x:Class="ContainerFarmManagement.Views.ContainerListPage"
+             Title="Your Containers">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="toolAccount" Clicked="toolAccount_Clicked" IconImageSource="account.png" Priority="1"/>
+        <ToolbarItem x:Name="toolAddContainer" Clicked="toolAddContainer_Clicked" IconImageSource="plus.png" Priority="0"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <CollectionView ItemsSource="{Binding ContainerList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Container">
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem x:Name="deleteContainer" Text="Delete" CommandParameter="{Binding .}" Clicked="deleteContainer_Clicked"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem x:Name="editContainer" Text="Edit" CommandParameter="{Binding .}" Clicked="editContainer_Clicked"/>
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <Frame>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                                  NumberOfTapsRequired="1"
+                                                  CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
+                                <Label Text="{Binding CropName, StringFormat='Crop: {0}'}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                            </Grid>
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
+</ContentPage>

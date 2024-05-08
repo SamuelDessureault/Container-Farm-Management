@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContainerFarmManagement.Views.FarmTechViews.AddEditContainerPage"
+             Title="AddEditContainerPage">
+    <VerticalStackLayout>
+        <Frame x:Name="containerIDFrame">
+            <VerticalStackLayout>
+                <Label Text="Container ID"/>
+                <Picker x:Name="containerIDPicker" SelectedItem="{Binding Key}"/>
+            </VerticalStackLayout>
+        </Frame>
+        <Frame>
+            <VerticalStackLayout>
+                <Label Text="Crop Name"/>
+                <Entry x:Name="cropNameEntry" Text="{Binding CropName}"/>
+            </VerticalStackLayout>
+        </Frame>
+        <Frame>
+            <VerticalStackLayout>
+                <Label Text="Low Temperature Threshold"/>
+                <Slider x:Name="lowTempThresholdSlider" Value="{Binding LowTempThreshold}" Minimum="5" Maximum="15" ValueChanged="lowTempThresholdSlider_ValueChanged"/>
+                <Label BindingContext="{x:Reference lowTempThresholdSlider}" Text="{Binding Value}"/>
+            </VerticalStackLayout>
+        </Frame>
+        <Frame>
+            <VerticalStackLayout>
+                <Label Text="High Temperature Threshold"/>
+                <Slider x:Name="highTempThresholdSlider" Value="{Binding HighTempThreshold}" Minimum="20" Maximum="30" ValueChanged="highTempThresholdSlider_ValueChanged"/>
+                <Label BindingContext="{x:Reference highTempThresholdSlider}" Text="{Binding Value}"/>
+            </VerticalStackLayout>
+        </Frame>
+        <Frame>
+            <VerticalStackLayout>
+                <Label Text="Telemetry Interval (in Seconds)"/>
+                <Entry x:Name="telemetryIntervalEntry" Keyboard="Numeric" TextChanged="telemetryIntervalEntry_TextChanged"/>
+                <Label BindingContext="{x:Reference telemetryIntervalEntry}" Text="{Binding Text}"/>
+            </VerticalStackLayout>
+        </Frame>
+        <Button x:Name="confirmBtn" Text="Confirm" Clicked="confirmBtn_Clicked"/>
+    </VerticalStackLayout>
+</ContentPage>
